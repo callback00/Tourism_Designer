@@ -1,0 +1,30 @@
+.search-head {
+    position: fixed;
+    background: white;
+    width: 100%;
+    z-index: 999;
+}
+
+.searchbar-result {
+    position: relative;
+    top: 105px;
+}
+
+.searchbar-result:before {
+    display: none;
+}
+
+.slide-image {
+    width: 100vw;
+    height: 150px;
+}
+
+.login-btn {
+    width: 45%;
+    height: 35px;
+    font-size: 15px;
+    color: #0099FF !important;
+    border-color: #66CCFF !important;
+    border-radius: 25px;
+    line-height: 35px;
+}

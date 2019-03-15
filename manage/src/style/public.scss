@@ -1,0 +1,36 @@
+.searchForm {
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+.btn-add {
+    background: #38c5b9;
+    border-style: solid;
+    border-color: #38c5b9;
+    outline: none;
+    color: white;
+    line-height: 25px;
+    min-width: 75px;
+}
+
+.btn-edit {
+    background: #00c1de;
+    border-style: solid;
+    border-color: #00c1de;
+    outline: none;
+    color: white;
+    line-height: 25px;
+    min-width: 75px;
+}
+
+.btn-delete {
+    background: #ED5565;
+    border-style: solid;
+    border-color: #ED5565;
+    outline: none;
+    color: white;
+    line-height: 25px;
+    min-width: 75px;
+}

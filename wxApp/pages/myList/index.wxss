@@ -1,0 +1,52 @@
+.user-info {
+    display: flex;
+    background: #66CCFF;
+    padding-top: 10px;
+}
+
+.avatar {
+    width: 6rem;
+    padding: 0 10px;
+}
+
+.info {
+    flex: 1 0;
+    padding-top: 0.2rem;
+    padding-left: 0.2rem;
+    color: white;
+}
+
+.balance {
+    font-size: 16px;
+    padding: 10px 0px
+}
+
+.point {
+    font-size: 16px
+}
+
+.login-btn {
+    border-color: white !important;
+    color: white !important;
+}
+
+.deposit-btn {
+    display:inline-block;
+    width:2.7rem;
+    font-size:16px;
+    height:1.75rem;
+    line-height:1.5rem;    
+    border-color:white !important;
+    color:white !important;
+    vertical-align:middle;
+    margin-left:10px;
+    padding:0px 0px;
+    
+}
+
+.suggest-option{
+    margin-top: 20px;
+}
+.weui-cell__bd {
+    color: #0099FF
+}

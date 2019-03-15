@@ -1,0 +1,34 @@
+<view class="search-head">
+  <view class="page__hd">
+    <!-- 图片轮播 -->
+    <view class="swiperContainer">
+      <swiper indicator-dots="{{indicatorDots}}" style="height:200px" autoplay="{{autoPlay}}" interval="{{interval}}" duration="{{duration}}" vertical='{{vertical}}' circular='{{circular}}'>
+        <block wx:for="{{swiperImg}}" wx:key="*this">
+          <swiper-item>
+            <image src="{{item}}" class="slide-image" style="height:200px" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <view wx:if="{{loginBtnShow}}" class="page__bd">
+    <view style="padding:10px">
+      <button class="login-btn" type="default" plain="{{true}}" bindtap="loginHandle">点我注册</button>
+      <view style="color:#0099FF; text-align:center; padding-top:20px;">注册后才能进行查看喔!</view>
+    </view>
+  </view>
+  <view wx:else class="page__bd">
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" bindinput="inputTyping" />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+      </view>
+      <view class="weui-search-bar__cancel-btn" bindtap="searchTap">搜索</view>
+    </view>
+  </view>
+</view>

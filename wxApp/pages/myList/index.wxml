@@ -1,0 +1,49 @@
+<view class="my-list">
+    <view class="user-info">
+        <view class="avatar">
+            <image style="height:6rem;width:6rem" src="../../images/default_avatar.png" />
+        </view>
+        <view class="info">
+            <view wx:if="{{loginBtnShow}}">
+                <view style="padding:10px;margin-top:20px;">
+                    <button class="login-btn" type="default" plain="{{true}}" bindtap="loginHandle">
+                        点我登录
+                    </button>
+                </view>
+            </view>
+            <view wx:else>
+                <view class="user-mobile">用户：15177105742</view>
+                <view class="balance">
+                    <span>您的余额：50.00元</span>
+                    <button class="deposit-btn" type="default" plain="{{true}}">充值</button>
+                </view>
+                <view class="point">您的积分：100</view>
+            </view>
+        </view>
+    </view>
+    <view class="suggest-option">
+        <view class="weui-cells weui-cells_after-title">
+            <navigator url="../designerList/index" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <image src="../../images/my_list/designer.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                </view>
+                <view class="weui-cell__bd">找设计师</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access">寻找专业设计师</view>
+            </navigator>
+            <navigator url="../expertsList/index" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <image src="../../images/my_list/experts.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                </view>
+                <view class="weui-cell__bd">找专家</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access">专家为您解难</view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <image src="../../images/my_list/case.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                </view>
+                <view class="weui-cell__bd">找案例</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access">多种案例可参看</view>
+            </navigator>
+        </view>
+    </view>
+</view>

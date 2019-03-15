@@ -1,0 +1,87 @@
+.login-content {
+    background-color: white;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.login-background {
+    position: absolute;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.login-form {
+    position: relative;
+    top: 20%;
+    padding: 0 2rem;
+}
+
+.login-phone input {
+    background: white;
+    border-bottom: 1rpx solid #D9D9D9;
+
+    height: 80rpx;
+    flex: 3;
+    padding-left: 5px;
+    padding-bottom: 20rpx;
+    margin-bottom: 40rpx;
+    font-size: 0.9rem;
+    letter-spacing: 3rpx;
+}
+
+.login-code {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.login-code input {
+    background: white;
+    border-bottom: 1rpx solid #D9D9D9;
+    height: 80rpx;
+    flex: 3;
+    padding-left: 5px;
+    padding-bottom: 20rpx;
+    margin: 0rpx 40rpx 40rpx 0rpx;
+    font-size: 0.9rem;
+    letter-spacing: 3rpx;
+}
+
+.login-code button {
+    background-color: white;
+    height: 35px;
+    flex: 1.5;
+    font-size: 25rpx;
+    margin-bottom: 10rpx;
+    /*border: 0.5rpx solid #D9D9D9;*/
+    border-radius: 3rem;
+    color: #0000FF;
+    /*letter-spacing: 5rpx;*/
+}
+
+.login-code button::after {
+    border: 0; /*清楚button边框*/
+}
+
+.login-btn {
+    height: 90rpx;
+    width: 600rpx;
+    font-size: 35rpx;
+    background: #66CC99;
+    color: white;
+    border-radius: 3rem;
+    margin-top: 80rpx;
+    display: flex;
+    align-items: center; /*定义body的元素垂直居中*/
+    justify-content: center; /*定义body的里的元素水平居中*/
+    letter-spacing: 8rpx;
+}
+
+.back-btn {
+    margin-top: 10px;
+    height: 35px;
+    font-size: 13px;
+}

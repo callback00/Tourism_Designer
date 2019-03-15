@@ -1,0 +1,26 @@
+.search-head {
+    position: fixed;
+    background: white;
+    width: 100%;
+    z-index: 999;
+}
+
+.searchbar-result {
+    position: relative;
+    top: 105px;
+}
+
+.searchbar-result:before {
+    display: none;
+}
+
+.page_title {
+    text-align: center;
+    font-size: 16px
+}
+
+.page_desc {
+    font-size: 12px;
+    color: red;
+    text-align: center;
+}
