@@ -1,2 +1,17 @@
-<!--pages/designerDetail/index.wxml-->
-<text>pages/designerDetail/index.wxml</text>
+    <view class="designer-info">
+        <view class="avatar">
+            <image style="height:6rem;width:6rem" src="../../images/default_avatar.png" />
+        </view>
+        <view class="info">
+            <view>
+                <view class="designer-name">高级设计师：余多多</view>
+                <view class="desc">
+                    <span>本站推荐设计师，删除测量，绘图，设计方案</span>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="synopsis">
+        <h2>简介</h2>
+    </view>

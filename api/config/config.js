@@ -15,7 +15,7 @@ module.exports = {
   sms: true,
   sms_default: true,
   sms_default_code: '6666',
-  notice_open: true,
+  notice_open: false,
 
 
   // 项目常规配置
@@ -30,7 +30,7 @@ module.exports = {
   db_username: 'root',
   db_password: '123456',
 
-  db_database: 'tourism',
+  db_database: 'tourism_designer',
   db_port: 3306,
   db_charset: 'utf8mb4',
   db_maxConnection: 50,

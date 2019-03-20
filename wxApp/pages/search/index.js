@@ -1,3 +1,4 @@
+const tools = require('../../utils/tools')
 // pages/search.js
 Page({
 
@@ -31,7 +32,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // 调用api获取数据
+    this.searchTap();
   },
 
   /**
@@ -77,12 +78,26 @@ Page({
 
   searchTap: function () {
     const inputVal = this.data.inputVal
-    this.setData({
-      searchResult: [{
-        title: '测试'
-      }],
-      // inputShowed: false
-    });
+
+    if (inputVal && inputVal.length > 0) {
+      // 调用api获取数据
+      tools.post('/wxapp/tourismLogo/getLogoList', (error, success) => {
+
+        if (error) {
+
+          wx.showModal({
+            title: '错误提示',
+            content: error,
+            showCancel: false
+          })
+        } else {
+
+          this.setData({
+            searchResult: success
+          })
+        }
+      }, { queryCondition: inputVal }, true)
+    }
   },
 
   clearInput: function () {

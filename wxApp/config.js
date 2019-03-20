@@ -1,4 +1,4 @@
-const freUrl = "http://192.168.1.107:8081/api";
+const freUrl = "http://192.168.1.106:8081/api";
 const config = {
     freUrl,
     //发送短信验证码

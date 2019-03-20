@@ -12,6 +12,10 @@ const Member = require('../../models/memberModel')
 const Notice = require('../../models/notice/noticeModel')
 const NoticeDetail = require('../../models/notice/noticeDetailModel')
 
+//业务数据库表
+const TourismLogo_Model = require('../../models/tourismLogo/tourismLogo_Model')
+
+
 // ---------- 创建 企业表 表 ----------
 Company.sync({ force: true }).then(() => {
   console.log(`----- 创建 Company 表成功 -----`)
@@ -101,4 +105,10 @@ NoticeDetail.sync({ force: true }).then(() => {
   console.log(`----- 创建 NoticeDetail 表成功 -----`)
 }).catch((err) => {
   console.error(`----- NoticeDetail 表创建失败: ${err} -----`)
+})
+
+TourismLogo_Model.sync({ force: true }).then(() => {
+  console.log(`----- 创建 TourismLogo_Model 表成功 -----`)
+}).catch((err) => {
+  console.error(`----- TourismLogo_Model 表创建失败: ${err} -----`)
 })

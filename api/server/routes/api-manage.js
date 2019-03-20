@@ -24,6 +24,8 @@ const multipart = require('connect-multiparty')
 
 const Api = require('../../src/models/system/apiModel')
 
+const tourismLogoController = require('../../src/controllers/manage/tourismLogo/tourismLogoController')
+
 module.exports = (router, app, config) => {
 
     // 需自己创建临时文件夹
@@ -177,4 +179,11 @@ module.exports = (router, app, config) => {
 
     // router
     //     .post('/tempFile/baseUpload', multipartMiddleware, weakCheck, tempFileController.baseUpload)
+
+    router
+    .post('/tourismLogo/logoCreate', strongCheck, tourismLogoController.logoCreate)
+    .post('/tourismLogo/logoEdit', strongCheck, tourismLogoController.logoEdit)
+    .delete('/tourismLogo/logoDelete', strongCheck, tourismLogoController.logoDelete)
+    .post('/tourismLogo/getLogoById', strongCheck, tourismLogoController.getLogoById)
+    .post('/tourismLogo/getLogoList', strongCheck, tourismLogoController.getLogoList)
 }

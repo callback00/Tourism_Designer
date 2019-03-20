@@ -28,7 +28,7 @@ module.exports = {
                     if (res.data.error) {
                         callback(res.data.error);
                     } else {
-                        callback(null, res.data);
+                        callback(null, res.data.success);
                     }
                 } else if (res.statusCode === 401) {
 
@@ -76,7 +76,7 @@ module.exports = {
                     if (res.data.error) {
                         callback(res.data.error);
                     } else {
-                        callback(null, res.data);
+                        callback(null, res.data.success);
                     }
                 } else if (res.statusCode === 401) {
                     // callback('登录已失效');
@@ -98,5 +98,44 @@ module.exports = {
                 callback('连接后台服务器失败。');
             },
         })
-    }
+    },
+
+    uploadFile: function (url, filePath, name = 'image', autoReLinkLoginFlag = true) {
+        const tokenString = this.getToken();
+
+        wx.uploadFile({
+            url:`${config.freUrl}${url}`,
+            filePath: filePath,
+            name: name,
+            header: {
+                'Authorization': `Basic ${tokenString}`
+            },
+            success: function (res) {
+                if (res.statusCode === 200) {
+                    if (res.data.error) {
+                        callback(res.data.error);
+                    } else {
+                        callback(null, res.data.success);
+                    }
+                } else if (res.statusCode === 401) {
+                    // callback('登录已失效');
+                    if (autoReLinkLoginFlag) {
+                        // 已验证该方法可行
+                        setTimeout(() => {
+                            wx.navigateTo({
+                                url: '../login/index'
+                            })
+                        }, 100);
+                    } else {
+                        callback('loginTimeOut')
+                    }
+                } else {
+                    callback('连接后台服务器失败。');
+                }
+            },
+            fail: function (res) {
+                callback('连接后台服务器失败。');
+            },
+        })
+    },
 }

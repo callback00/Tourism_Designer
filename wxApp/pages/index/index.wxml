@@ -30,5 +30,6 @@
       </view>
       <view class="weui-search-bar__cancel-btn" bindtap="searchTap">搜索</view>
     </view>
+    <view bindtap="img_search">打字太累？点我试试图片搜索</view>
   </view>
 </view>

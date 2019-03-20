@@ -22,8 +22,7 @@ async function initData() {
 
         // 创建默认组织
         const companyData = [
-            { name: '群邦市场投资有限公司', parentId: 0, treeId: '[0]', isLeaf: '0', sort: '1', remark: '集团总公司' },
-            { name: '乐亿家信息科技有限公司', parentId: 1, treeId: '[0],[1]', isLeaf: '1', sort: '1', remark: '子公司' }
+            { name: '乐亿家信息科技有限公司', parentId: 0, treeId: '[0]', isLeaf: '0', sort: '1', remark: '集团总公司' }
         ]
         Company.bulkCreate(companyData, { transaction: trans })
 

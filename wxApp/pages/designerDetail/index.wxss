@@ -1,1 +1,25 @@
-/* pages/designerDetail/index.wxss */
+.designer-info {
+    display: flex;
+    background: #66CCFF;
+    padding-top: 10px;
+}
+
+.avatar {
+    width: 6rem;
+    padding: 0 10px;
+}
+
+.info {
+    flex: 1 0;
+    padding: 0.2rem;
+    color: white;
+}
+
+.desc {
+    font-size: 14px;
+    padding: 10px 0px
+}
+
+.synopsis{
+    margin: 10px;
+}

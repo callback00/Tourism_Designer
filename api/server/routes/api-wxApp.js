@@ -1,5 +1,13 @@
+const multipart = require('connect-multiparty')
 const redisUtility = require('../../src/common/redisUtility');
 const mobileAuth = require('../../src/controllers/wx/authController')
+
+const tourismLogoController = require('../../src/controllers/wx/tourismLogo/tourismLogoController')
+
+const multipartMiddleware = multipart({
+    autoFiles: true,
+    // maxFilesSize: 50 * 1024 * 1024, // 限制文件大小，单位：字节
+  })
 
 module.exports = (router, app, config) => {
 
@@ -10,27 +18,13 @@ module.exports = (router, app, config) => {
 
     // 自定义 弱权限校验 中间件
     const weakCheck = (req, res, next) => {
-        // console.log(req.sessionID)
-        if (req.sessionID) {
-            next();
-        } else {
-            loginExpired(res);
-        }
-    }
-
-    // 自定义 微信小程序登录赋值 中间件
-    const getWXOpenid = (req, res, next) => {
-        req.wxOpenid = req.sessionID;
-        next();
-    }
-
-    // 自定义 获取操作用户user 中间件
-    const getUser = (req, res, next) => {
         redisUtility.getUser(req.sessionID, (current) => {
             if (current) {
-                req.user = current;
+                req.member = current;
+                next();
+            } else {
+                loginExpired(res);
             }
-            next();
         })
     }
 
@@ -47,4 +41,10 @@ module.exports = (router, app, config) => {
     router
         .post('/wxapp/login', mobileAuth.wxappLogin)
         .post('/wxapp/login/send', mobileAuth.sendCode)
+
+    // 设计图查询
+    router
+        .post('/wxapp/tourismLogo/getLogoList', weakCheck, tourismLogoController.getLogoList)
+        .post('/wxapp/tourismLogo/getLogoById', weakCheck, tourismLogoController.getLogoById)
+        .post('/wxapp/tourismLogo/imgSearch', multipartMiddleware, weakCheck, tourismLogoController.imgSearch)
 }
