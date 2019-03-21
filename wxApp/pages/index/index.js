@@ -17,8 +17,6 @@ Page({
     vertical: false, //滑动方向是否为纵向
     interval: 3000, //自动切换时间间隔
     duration: 1000, //滑动动画时长
-
-    files: [],
   },
 
   /**
@@ -29,7 +27,8 @@ Page({
 
     if (userInfoStr) {
       this.setData({
-        loginBtnShow: false
+        loginBtnShow: false,
+        inputVal: ''
       })
     }
   },
@@ -69,53 +68,16 @@ Page({
   },
 
   img_search: function (e) {
-    var that = this;
+    const that = this
     wx.chooseImage({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
+
         if (res.tempFilePaths.length > 0) {
-          res.tempFilePaths.forEach(function (val) {
-            const fileTmp = {
-              path: val,
-              isUpload: false,
-              tips: 0
-            }
 
-            // 方便修改数据
-            that.setData({
-              files: that.data.files.concat(fileTmp)
-            });
-          })
-        }
-
-        if (that.data.files.length > 0) {
-          // 遍历that.data.files 方便修改数据，如果遍历res.tempFilePaths 就不好修改url了
-          that.data.files.forEach(function (val, index) {
-            var imageSrc = val.path;
-
-            if (!val.isUpload || val.tips === 1) {
-              that.data.files[index].tips = 1, //上传中
-                that.setData({
-                  files: that.data.files
-                });
-                tools.uploadFile('/wxapp/tourismLogo/imgSearch', imageSrc, 'image', (result) => {
-                if (result.data.error) {
-                  that.data.files[index].tips = 3 //上传失败
-                  that.data.files[index].isUpload = true
-                  that.setData({
-                    files: that.data.files
-                  });
-                } else {
-                  that.data.files[index].tips = 2 // 上传成功
-                  that.data.files[index].isUpload = true
-                  that.data.files[index].path = JSON.parse(result.data).success
-                  that.setData({
-                    files: that.data.files
-                  });
-                }
-              })
-            }
+          wx.navigateTo({
+            url: `../search/index?imagePath=${res.tempFilePaths[0]}`
           })
         }
       }

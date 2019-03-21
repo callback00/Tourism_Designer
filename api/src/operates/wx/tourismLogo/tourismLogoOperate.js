@@ -42,4 +42,31 @@ module.exports = {
             return callback('请求已被服务器拒绝');
         }
     },
+
+    imgSearch: async (wordArry, companyId, callback) => {
+
+        let condition = ''
+        wordArry.forEach(element => {
+            condition = condition + `or keyWord like '%${element.words}%'`
+        });
+
+        if (condition.length > 0) {
+            condition = condition.slice(2, condition.length)
+            condition = `companyId = ${companyId} and ` + condition
+
+            try {
+                const data = await conn.query(
+                    `select * from TourismLogos where ${condition}
+                `, { type: sequelize.QueryTypes.SELECT }
+                ).then((result) => {
+                    return result;
+                })
+
+                return callback(null, data);
+            } catch (error) {
+                logger.error(`----- tourismLogoOperate getLogoList error = ${error} -----`);
+                return callback('请求已被服务器拒绝');
+            }
+        }
+    },
 }

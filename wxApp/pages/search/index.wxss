@@ -31,3 +31,10 @@
     padding: 0 20px;
     top: 40vh;
 }
+
+.weui-btn {
+    font-size: 12px;
+    margin-top: 0px;
+    margin-left: 0.75rem;
+    min-width: 78px;
+}

@@ -100,22 +100,23 @@ module.exports = {
         })
     },
 
-    uploadFile: function (url, filePath, name = 'image', autoReLinkLoginFlag = true) {
+    uploadFile: function (url, filePath, name = 'image', callback, autoReLinkLoginFlag = true) {
         const tokenString = this.getToken();
 
         wx.uploadFile({
-            url:`${config.freUrl}${url}`,
+            url: `${config.freUrl}${url}`,
             filePath: filePath,
             name: name,
             header: {
+                'content-type': 'application/json', // 默认值
                 'Authorization': `Basic ${tokenString}`
             },
             success: function (res) {
                 if (res.statusCode === 200) {
                     if (res.data.error) {
-                        callback(res.data.error);
+                        callback(JSON.parse(res.data).error);
                     } else {
-                        callback(null, res.data.success);
+                        callback(null, JSON.parse(res.data).success);
                     }
                 } else if (res.statusCode === 401) {
                     // callback('登录已失效');

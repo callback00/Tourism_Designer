@@ -9,6 +9,7 @@ Page({
     inputShowed: false,
     inputVal: "",
     searchResult: [],
+    isShowNoDataStr: false,
   },
 
   /**
@@ -17,8 +18,17 @@ Page({
   onLoad: function (options) {
 
     this.setData({
-      inputVal: options.condition
+      inputVal: options.condition ? options.condition : null,
+      imagePath: options.imagePath ? options.imagePath : null
     })
+
+    const inputVal = options.condition ? options.condition : null
+    const imagePath = options.imagePath ? options.imagePath : null
+    if (inputVal && inputVal.length > 0) {
+      this.searchTap();
+    } else if (imagePath && imagePath.length > 0) {
+      this.imgSearchApi(imagePath)
+    }
   },
 
   /**
@@ -32,7 +42,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.searchTap();
+
   },
 
   /**
@@ -78,11 +88,17 @@ Page({
 
   searchTap: function () {
     const inputVal = this.data.inputVal
-
+    this.setData({
+      isShowNoDataStr: false
+    })
+    wx.showLoading({
+      mask: true,
+      title: '查询中',
+    })
     if (inputVal && inputVal.length > 0) {
       // 调用api获取数据
       tools.post('/wxapp/tourismLogo/getLogoList', (error, success) => {
-
+        wx.hideLoading()
         if (error) {
 
           wx.showModal({
@@ -90,14 +106,41 @@ Page({
             content: error,
             showCancel: false
           })
+          this.setData({
+            isShowNoDataStr: true
+          })
         } else {
 
           this.setData({
-            searchResult: success
+            searchResult: success,
+            isShowNoDataStr: true
           })
         }
       }, { queryCondition: inputVal }, true)
     }
+  },
+
+  imgSearchApi: function (imagePath) {
+    wx.showLoading({
+      mask: true,
+      title: '查询中',
+    })
+    this.setData({
+      isShowNoDataStr: false
+    })
+    tools.uploadFile('/wxapp/tourismLogo/imgSearch', imagePath, 'image', (error, success) => {
+      wx.hideLoading()
+      if (error) {
+        wx.showModal({
+          title: '检索失败',
+          content: error,
+          showCancel: false,
+        })
+        this.setData({ inputVal: '', isShowNoDataStr: true })
+      } else {
+        this.setData({ searchResult: success, inputVal: '', isShowNoDataStr: true })
+      }
+    })
   },
 
   clearInput: function () {
@@ -111,5 +154,20 @@ Page({
     this.setData({
       inputVal: e.detail.value
     });
+  },
+
+  img_search: function (e) {
+    const that = this
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+
+        if (res.tempFilePaths.length > 0) {
+          that.imgSearchApi(res.tempFilePaths[0])
+        }
+      }
+    })
   }
 })

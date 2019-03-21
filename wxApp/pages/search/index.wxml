@@ -15,12 +15,13 @@
         </view>
       </view>
       <view class="weui-search-bar__cancel-btn" bindtap="searchTap">搜索</view>
+      <button class="weui-btn" type="primary" bindtap="img_search">图片搜索</button>
     </view>
   </view>
 </view>
 <view class="searchbar-result" wx:if="{{searchResult.length > 0}}">
   <view class="weui-panel__bd">
-    <navigator wx:for="{{searchResult}}" wx:key="*this" url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+    <navigator wx:for="{{searchResult}}" wx:key="item.id" url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
         <image class="weui-media-box__thumb" src="{{item.logoImageUrl}}" />
       </view>
@@ -31,4 +32,6 @@
     </navigator>
   </view>
 </view>
-<view wx:else class="nodata-result">没有搜索到相关数据，请换个关键词试试。</view>
+<view wx:if="{{isShowNoDataStr && searchResult.length<1}}" class="nodata-result">
+  没有搜索到相关数据，请换个关键词试试。
+</view>
